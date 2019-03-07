@@ -125,4 +125,14 @@ public class IntArrayWorker
     }
     return max;
   }
+  
+  public int getColTotal(int n)
+  {
+    int total = 0;
+    for (int i=0;i<matrix.length;i++)
+    {
+      total += matrix[i][n];
+    }
+    return total;
+  }
 }
