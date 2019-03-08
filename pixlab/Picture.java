@@ -130,6 +130,20 @@ public class Picture extends SimplePicture
     zeroGreen();
   }
   
+  public void negate()
+  {
+    Pixel[][] picture = this.getPixels2D();
+    for (Pixel[] row: picture)
+    {
+      for (Pixel p: row)
+      {
+        p.setBlue(255-p.getBlue());
+        p.setRed(255-p.getRed());
+        p.setGreen(255-p.getGreen());
+      }
+    }
+  }
+  
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
