@@ -26,9 +26,9 @@ public class PictureTester
     caterpillar.explore();
   }
   
-  public static void testMirrorDiagonal()
+  public static void testMirrorDiagonalRectangle()
   {
-    Picture caterpillar = new Picture("caterpillar.jpg");
+    Picture caterpillar = new Picture("beach.jpg");
     caterpillar.explore();
     caterpillar.mirrorDiagonal();
     caterpillar.explore();
@@ -111,8 +111,16 @@ public class PictureTester
   {
     Picture snowman = new Picture("snowman.jpg");
     snowman.explore();
-    //snowman.mirrorArms();
-    //snowman.explore();
+    snowman.mirrorArms();
+    snowman.explore();
+  }
+  
+  public static void testMirrorGull()
+  {
+    Picture seagull = new Picture("seagull.jpg");
+    seagull.explore();
+    //seagull.mirrorArms();
+    //seagull.explore();
   }
   
   /** Main method for testing.  Every class can have a main
@@ -133,12 +141,12 @@ public class PictureTester
     testMirrorVerticalRightToLeft();
     testMirrorHorizontal();
     testMirrorHorizontalBotToTop();
-    testMirrorDiagonal();
+    testMirrorDiagonalRectangle();
     testMirrorTemple();
-    //testMirrorArms();
-    //testMirrorGull();
+    testMirrorArms();
+    testMirrorGull();
     //testMirrorDiagonal();
-    //testCollage();
+    testCollage();
     //testCopy();
     //testEdgeDetection();
     //testEdgeDetection2();

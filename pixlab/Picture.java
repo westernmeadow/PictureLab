@@ -238,15 +238,15 @@ public class Picture extends SimplePicture
     Pixel rightPixel = null;
     int ywidth = pixels.length;
     int xwidth = pixels[0].length;
-    double slope = ywidth/xwidth;
-    for (int row = 0; row < xwidth; row++)
+    double slope = (double)ywidth/xwidth;
+    for (int row = 0; row < ywidth; row++)
     {
-      for (int col = 0; col < ywidth; col++)
+      for (int col = 0; col < xwidth; col++)
       {
-        if (col < slope*row)
+        if (row > slope*col)
         {
          leftPixel = pixels[row][col];
-         rightPixel = pixels[xwidth-1-row][ywidth - 1 - col];
+         rightPixel = pixels[ywidth - 1 - row][xwidth - 1 - col];
          rightPixel.setColor(leftPixel.getColor());
         }
       }
@@ -272,6 +272,29 @@ public class Picture extends SimplePicture
         leftPixel = pixels[row][col];      
         rightPixel = pixels[row]                       
                          [mirrorPoint - col + mirrorPoint];
+        rightPixel.setColor(leftPixel.getColor());
+      }
+    }
+  }
+  
+  public void mirrorArms()
+  {
+    int mirrorPoint = 192;
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    int count = 0;
+    Pixel[][] pixels = this.getPixels2D();
+    
+    // loop through the rows
+    for (int row = 165; row < mirrorPoint; row++)
+    {
+      // loop from 13 to just before the mirror point
+      for (int col = 102; col < 295; col++)
+      {
+        
+        leftPixel = pixels[row][col];      
+        rightPixel = pixels[mirrorPoint - row + mirrorPoint]                       
+                         [col];
         rightPixel.setColor(leftPixel.getColor());
       }
     }
@@ -313,14 +336,14 @@ public class Picture extends SimplePicture
   {
     Picture flower1 = new Picture("flower1.jpg");
     Picture flower2 = new Picture("flower2.jpg");
-    this.copy(flower1,0,0);
-    this.copy(flower2,100,0);
-    this.copy(flower1,200,0);
+    this.copy(flower1,0,10);
+    this.copy(flower2,100,20);
+    this.copy(flower1,200,30);
     Picture flowerNoBlue = new Picture(flower2);
     flowerNoBlue.zeroBlue();
-    this.copy(flowerNoBlue,300,0);
-    this.copy(flower1,400,0);
-    this.copy(flower2,500,0);
+    this.copy(flowerNoBlue,300,40);
+    this.copy(flower1,400,50);
+    this.copy(flower2,500,60);
     this.mirrorVertical();
     this.write("collage.jpg");
   }
