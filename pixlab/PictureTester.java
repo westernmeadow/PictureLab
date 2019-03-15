@@ -59,6 +59,16 @@ public class PictureTester
     canvas.explore();
   }
   
+  public static void testCopy()
+  {
+     Picture ocean = new Picture("beach.jpg");
+     Picture louisXVI = new Picture("snowman.jpg");
+     ocean.copy(louisXVI,200,300,68,168,180,230);
+     //Picture flower = new Picture("flower1.jpg");
+     //ocean.copy(flower,300,200);
+     ocean.explore();
+  }
+  
   public static void testMyCollage()
   {
     Picture canvas = new Picture("640x480.jpg");
@@ -70,7 +80,7 @@ public class PictureTester
   public static void testEdgeDetection()
   {
     Picture swan = new Picture("swan.jpg");
-    swan.edgeDetection(10);
+    swan.edgeDetection2(30);
     swan.explore();
   }
   
@@ -84,9 +94,23 @@ public class PictureTester
     beach.explore();
   }
   
-  public static void testNegate()
+  public static void testKeepOnlyRed()
   {
     Picture beach = new Picture("beach.jpg");
+    beach.keepOnlyRed();
+    beach.explore();
+  }
+  
+  public static void testKeepOnlyGreen()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.keepOnlyGreen();
+    beach.explore();
+  }
+  
+  public static void testNegate()
+  {
+    Picture beach = new Picture("blackhole.jpg");
     beach.negate();
     beach.explore();
   }
@@ -147,8 +171,8 @@ public class PictureTester
     // to run
     testZeroBlue();
     testKeepOnlyBlue();
-    //testKeepOnlyRed();
-    //testKeepOnlyGreen();
+    testKeepOnlyRed();
+    testKeepOnlyGreen();
     testNegate();
     testGrayscale();
     //testFixUnderwater();
@@ -162,8 +186,9 @@ public class PictureTester
     testMirrorArms();
     testMirrorGull();
     testCollage();
+    testCopy();
     testMyCollage();
-    //testEdgeDetection();
+    testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();

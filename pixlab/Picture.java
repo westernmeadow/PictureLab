@@ -130,6 +130,18 @@ public class Picture extends SimplePicture
     zeroGreen();
   }
   
+  public void keepOnlyRed()
+  {
+    zeroBlue();
+    zeroGreen();
+  }
+  
+  public void keepOnlyGreen()
+  {
+    zeroRed();
+    zeroBlue();
+  }
+  
   public void negate()
   {
     Pixel[][] picture = this.getPixels2D();
@@ -400,11 +412,11 @@ public class Picture extends SimplePicture
     Picture flower2 = new Picture("swan.jpg");
     Picture flower3 = new Picture("swan.jpg");
     flower1.negate();
-    flower2.zeroBlue();
+    flower2.zeroGreen();
     flower3.mirrorDiagonalRec();
     this.copy(flower3,0,10);
-    this.copy(flower2,200,30,100,300,100,300);
-    this.copy(flower1,500,50);
+    this.copy(flower2,100,10,100,300,100,300);
+    this.copy(flower1,250,10);
     this.mirrorDiagonal();
     this.write("collage.jpg");
   }
@@ -431,6 +443,36 @@ public class Picture extends SimplePicture
           leftPixel.setColor(Color.BLACK);
         else
           leftPixel.setColor(Color.WHITE);
+      }
+    }
+  }
+  
+  public void edgeDetection2(int edgeDist)
+  {
+    Pixel refPixel = null;
+    Pixel rightPixel = null;
+    Pixel botPixel = null;
+    Pixel[][] pixels = this.getPixels2D();
+    Color rightColor = null;
+    Color botColor = null;
+    for (int row = 0; row < pixels.length-1; row++)
+    {
+      for (int col = 0; 
+           col < pixels[0].length-1; col++)
+      {
+        refPixel = pixels[row][col];
+        rightPixel = pixels[row][col+1];
+        botPixel = pixels[row+1][col];
+        rightColor = rightPixel.getColor();
+        botColor = botPixel.getColor();
+        if (refPixel.colorDistance(rightColor) > 
+            edgeDist)
+          refPixel.setColor(Color.BLACK);
+        if (refPixel.colorDistance(botColor) >
+            edgeDist)
+          refPixel.setColor(Color.BLACK);
+        else
+          refPixel.setColor(Color.WHITE);
       }
     }
   }
